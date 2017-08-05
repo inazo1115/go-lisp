@@ -16,19 +16,19 @@ func (lex *lexer) peek() string {
 func (lex *lexer) next() string {
 	lex.skip()
 	if lex.peek() == "(" {
-		ret := string(lex.expr[lex.carsor])
+		ret := lex.peek()
 		lex.carsor++
 		return ret
 	}
 	if lex.peek() == ")" {
-		ret := string(lex.expr[lex.carsor])
+		ret := lex.peek()
 		lex.carsor++
 		return ret
 	}
 	from := lex.carsor
 	for {
 		lex.carsor++
-		s := string(lex.expr[lex.carsor])
+		s := lex.peek()
 		if s == "(" || s == ")" || s == " " || s == "\n" {
 			break
 		}
